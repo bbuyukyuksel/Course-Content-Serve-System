@@ -19,5 +19,11 @@ ___
 - Can serve local video content.
 - Can serve local markdown (.md or .markdown) file as HTML.
 
+### Code Hilite CSS Generate
+```bash
+pygmentize -L
+pygmentize -S default -f html -a .codehilite > static/assets/css/codehilite.css
+```
+
 ### Contributors
 - Burak BÜYÜKYÜKSEL *(buyukyukselburak@gmail.com)*
