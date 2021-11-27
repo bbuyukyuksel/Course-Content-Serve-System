@@ -2,24 +2,65 @@
 {% load static %}
     
 {% block content %}
-<h1> Lesson </h1>
-
-<video controls>
-    <source src="/media/cpp/01-welcome.mp4" type="video/mp4">
-    <track src="/media/cpp/welcome_EnglishSRT.vtt" label="English" kind="captions" srclang="en-us" default >
-    <track src="/media/cpp/welcome_TurkishSRT.vtt" label="Turkish" kind="captions" srclang="tr-tr" default >
-  Your browser does not support the video tag.
-  </video>
 
 
-<p>
-{{ lesson.course }}
-{{ lesson.lesson_name }}
-{{ lesson.lesson_desc }}
-{{ lesson.video_path }}
-{{ lesson.content_path }}
-{{ lesson.is_watched }}
-</p>
+<div class="container">
+    <h1 style="color:gray;"> Lesson </h1>
 
+    <div class="col-md-12">
+        <div class="row">
+            <video controls>
+                <source src="/media/cpp/01-welcome.mp4" type="video/mp4">
+                <track src="/media/cpp/welcome_EnglishSRT.vtt" label="English" kind="captions" srclang="en-us" default >
+                <track src="/media/cpp/welcome_TurkishSRT.vtt" label="Turkish" kind="captions" srclang="tr-tr" default >
+              Your browser does not support the video tag.
+            </video>        
+        </div>
+
+        
+    {% if markdown %}
+        <style>
+            .codehilite{
+                padding:10px;
+                margin: 20px 0;
+            }
+
+            .content>h1, h2, h3, h4, h5{
+                color:black;
+                margin: 20px 0;
+            }
+
+            .content>ul{
+                list-style: disc ;
+            }
+            .content>ul>li{
+                margin-left:5%;
+            }
+            
+        </style>
+
+        <div class="content">
+            {{ markdown|safe}}
+        </div>
+        
+    {% endif %}
+    
+{% endblock %}
+
+{% block js %}
+<script>
+    var $video  = $('video'),
+    $window = $(window); 
+
+$(window).resize(function(){
+    var width = $window.width() / 2;
+    var height = $window.height() / 3;
+    
+    $video.css('height', height);
+    $video.css('width', width);
+  
+}).resize();
+
+</script>
 {% endblock %}
 
