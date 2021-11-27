@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block content %}
+<h1> Lesson </h1>
+
+<video controls>
+    <source src="/media/cpp/01-welcome.mp4" type="video/mp4">
+    <track src="/media/cpp/welcome_EnglishSRT.vtt" label="English" kind="captions" srclang="en-us" default >
+    <track src="/media/cpp/welcome_TurkishSRT.vtt" label="Turkish" kind="captions" srclang="tr-tr" default >
+  Your browser does not support the video tag.
+  </video>
+
+
+<p>
+{{ lesson.course }}
+{{ lesson.lesson_name }}
+{{ lesson.lesson_desc }}
+{{ lesson.video_path }}
+{{ lesson.content_path }}
+{{ lesson.is_watched }}
+</p>
+
+{% endblock %}
+

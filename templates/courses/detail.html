@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <h1> {{ course.course_name }}</h1>
+    </div>
+
+    {% if lessons %}
+    <div class="row">
+        {% for lesson in lessons %}
+        <div class="col-md-3">
+            <div class="card" style="width: 14rem;">
+                <img class="card-img-top" src="/media/cpp.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ lesson.lesson_name }}
+                        <sub>
+                            {% if lesson.is_watched %} <i class="fa fa-check"></i> 
+                        {% else %} <i class="fa fa-play"></i>
+                        {% endif %} 
+                        </sub>
+                    </h5> 
+                <p class="card-text"> {{ lesson.lesson_desc }}</p>
+                <a href="{% url 'lessons:lesson' lesson.pk %}" class="btn btn-primary">Watch</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>    
+    {% endif %}
+    
+</div>
+
+{% endblock %}
+

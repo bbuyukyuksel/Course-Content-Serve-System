@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block content %}
+<h1> Courses </h1>
+
+{% if courses %}
+    <div class="container">
+        <div class="row">
+            {% for course in courses %}
+            <div class="col-md-3">
+                <div class="card" style="width: 16rem;">
+                    <img class="card-img-top" src="{{ course.course_icon }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ course.course_name }} <sub>[{{ course.length_of_lessons }}]</sub></h5>
+                        <p class="card-text"> {{ course.course_desc }} </p>
+
+                        <a href="{% url 'courses:detail' course.pk %}" class="btn btn-primary">Go to course</a>
+                    </div>
+                </div>        
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
+
